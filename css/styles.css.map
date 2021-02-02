@@ -1,8 +1,9 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "ACAA,AAAA,UAAU,CAAA;EACN,KAAK,EAAE,KAAK;CACf",
     "sources": [
-        "../scss/styles.scss"
+        "styles.scss",
+        "pages/_page_accueil.scss"
     ],
     "names": [],
     "file": "styles.css"
