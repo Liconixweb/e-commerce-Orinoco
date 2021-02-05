@@ -1,10 +1,19 @@
 //utils
+    //variables
+    @import "./utils/variables";
 
 //base
+    //normes
+    @import "./base/normes";
+
+    //polices
+    @import "./base/polices";
 
 //composants
 
 //layout
+    //footer
+    @import "./layout/footer";
 
 //pages
     //page d'accueil
