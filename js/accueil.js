@@ -3,7 +3,7 @@
 fetch("http://localhost:3000/api/teddies")
 .then(response => response.json())
 .then(ours => {
-    for(let i=0; i <ours.length; i++){      
+        for(let i=0; i <ours.length; i++){
         console.log('Ours ' + i + ' ' + ours[i].imageUrl + ' ' + ours[i].name + ' ' + ours[i].price);
         main = document.getElementById('main');
         newOurs = document.createElement('div');
@@ -22,15 +22,15 @@ fetch("http://localhost:3000/api/teddies")
         newOursPrice.className = 'oursPrice col-3 mb-0';
         newOursPrice.textContent = ours[i].price;
         newOurs.append(newOursPrice);
-        newOursDescription = document.createElement("button");
-        newOursDescription.className = 'oursDescription btn btn-outline-secondary mt-0 mb-2';
-        newOursDescription.textContent = "Plus de coloris";
-        newOurs.append(newOursDescription);
-        let newOursLien = document.createElement('a');
-        newOursLien.appendChild(newOursDescription);
-        newOursLien.href = "produit.html";
+        newOursButton = document.createElement("button");
+        newOursButton.className = 'oursButton btn btn-outline-secondary mt-0 mb-2';
+        newOursButton.textContent = "Plus de coloris";
+        newOurs.append(newOursButton);
+        let newOursLien = document.createElement('a');        
+        newOursLien.href = "produit.html?id="+ ours[i]._id;
         newOursLien.className = 'oursLien text-center';
-        newOurs.appendChild(newOursLien);
-    } 
+        newOursLien.appendChild(newOursButton);
+        newOurs.append(newOursLien);    
+        }
 })
 .catch(error => alert("Erreur : " + error));

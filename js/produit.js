@@ -1,31 +1,33 @@
+let params = (new URL(document.location)).searchParams;
+let id = params.get('id');
+console.log(id);
+
 //Récupération de l'API et création de la fiche produit
 
-fetch("http://localhost:3000/api/teddies")
+fetch("http://localhost:3000/api/teddies/"+id)
 .then(response => response.json())
-.then(ours => {
-    for(let i=0; i <ours.length; i++){      
-        console.log('Ours ' + i + ' ' + ours[i].imageUrl + ' ' + ours[i].name + ' ' + ours[i].price);
-        main = document.getElementById('main');
-        newOurs = document.createElement('div');
-        newOurs.className = 'ours row mx-auto mt-2 col-md-6';
-        main.append(newOurs);        
+.then(ours => {      
+        main = document.getElementById('main-produit');
+        newOursProduit = document.createElement('div');
+        newOursProduit.className = 'oursProduit row mx-auto mt-2 col-md-6';
+        main.append(newOursProduit); 
+        newOursProduitTitle = document.createElement('h1');
+        newOursProduit.className = 'oursProduit text-center';
+        newOursProduitTitle.textContent = 'Orinoco vous présente ' + ' ' + ours.name;
+        newOursProduit.appendChild(newOursProduitTitle);
+        newOursPrice = document.createElement("h2");
+        newOursPrice.className = 'oursPrice col-3 mb-0 text-center';
+        newOursPrice.textContent = ours.price;
+        newOursProduit.appendChild(newOursPrice);
         newOursImage = document.createElement("img");    
-        newOursImage.src = ours[i].imageUrl;    
-        newOursImage.className = 'oursImage img-thumbnail rounded max-auto d-block mb-2 img-fluid h-75 ';
-        newOursImage.textContent = ours[i].imageUrl;
-        newOurs.append(newOursImage);
-        newOursName = document.createElement("h2");        
-        newOursName.className = 'oursName col-9 mb-0';
-        newOursName.textContent = ours[i].name;
-        newOurs.append(newOursName);
-        newOursPrice = document.createElement("h3");
-        newOursPrice.className = 'oursPrice col-3 mb-0';
-        newOursPrice.textContent = ours[i].price;
-        newOurs.append(newOursPrice);
-        newOursDescription = document.createElement("h4");
-        newOursDescription.className = 'oursDescription col text-center';
-        newOursDescription.textContent = "Plusieurs coloris";
-        newOurs.append(newOursDescription);
-    } 
+        newOursImage.src = ours.imageUrl;    
+        newOursImage.className = 'oursImage img-thumbnail rounded max-auto d-block mb-2 img-fluid';
+        newOursImage.textContent = ours.imageUrl;
+        newOursProduit.append(newOursImage);
+        newOursProduitButton = document.createElement("select");
+        newOursProduitButton.className = 'oursButton btn btn-outline-secondary dropdown-toggle mt-0 mb-2';
+        newOursProduitButton.textContent = "Plus de coloris";
+        newOursProduit.append(newOursProduitButton);
+        console.log(ours);
 })
 .catch(error => alert("Erreur : " + error));

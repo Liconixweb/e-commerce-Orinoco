@@ -23,11 +23,6 @@ h4 {
   font-weight: bold;
 }
 
-button {
-  font-family: 'Lobster', cursive;
-  font-weight: bold;
-}
-
 ul {
   font-family: "Lobster", cursive;
 }
@@ -46,7 +41,7 @@ footer a {
   color: transparent;
 }
 
-.oursDescription {
+.oursButton {
   font-family: 'Lobster', cursive;
   font-weight: bold;
 }
