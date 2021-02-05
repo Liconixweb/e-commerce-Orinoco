@@ -23,8 +23,17 @@ h4 {
   font-weight: bold;
 }
 
+button {
+  font-family: 'Lobster', cursive;
+  font-weight: bold;
+}
+
 ul {
   font-family: "Lobster", cursive;
+}
+
+footer a {
+  color: black;
 }
 
 .icon-panier i {
@@ -35,5 +44,15 @@ ul {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#8f5bfe), color-stop(#a265c7), color-stop(#b06ca1), color-stop(#be7578), color-stop(#c87a5c), to(#d8832e));
   background-image: linear-gradient(#8f5bfe, #a265c7, #b06ca1, #be7578, #c87a5c, #d8832e);
   color: transparent;
+}
+
+.oursDescription {
+  font-family: 'Lobster', cursive;
+  font-weight: bold;
+}
+
+.oursLien {
+  background-color: linear-gradient(#8f5bfe, #a265c7, #b06ca1, #be7578, #c87a5c, #d8832e);
+  border-color: linear-gradient(#8f5bfe, #a265c7, #b06ca1, #be7578, #c87a5c, #d8832e);
 }
 /*# sourceMappingURL=styles.css.map */
