@@ -1,0 +1,20 @@
+.icon-panier i{
+    margin-top: 40px;
+    font-size: 50px;
+    background-clip: content-box;
+    -webkit-background-clip: text;
+    background-image: $degrade;
+    color: transparent;    
+}
+.icon-retour i{
+    margin-top: 40px;
+    font-size: 50px;
+    background-clip: content-box;
+    -webkit-background-clip: text;
+    background-image: $degrade;
+    color: transparent;    
+}
+.retour{
+    font-family: 'Lobster', cursive;
+    font-weight: bold;
+}

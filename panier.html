@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-_">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+        <meta name="site d'un e-commerce qui vend des ours en peluche" content="Plusieurs ours en peluche mis en vente."/>
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>    
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">    
+        <script src="https://kit.fontawesome.com/2e4e807c32.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <title>Orinoco</title>
+    </head>
+    <body class="body container">       
+            <nav class="row">
+                <div class="logo col-9">
+                    <a href="index.html"><img src="images/logo.png" class="img-fluid" alt="Logo Orinoco"/></a>
+                </div>    
+                <div class="icon-retour col-3 text-center">                    
+                    <a href="index.html"><i class="fas fa-arrow-left"></i></a>
+                    <p class="retour">Reprendre vos achats</p>
+                </div>
+            </nav>
+            <main id="main-panier" class="row">
+                <div class="formulaire container" id="formulaire">
+                    <form action="#" method="POST" class="needs-validation" novalidate>
+                        <div class="row">
+                            <div class="form-group form-inline col-12 col-md-6">
+                                <label for="Nom" class="col-auto col-form-label col-form-label-sm">Nom de famille :</label>
+                                <input type="text" id="nom" class="form-control form-control-lg" name="user_firstName" required>
+                                <div class="valid-feedback">Valide</div>
+                                <div class="invalid-feedback">Veuillez saisir votre nom</div>
+                            </div>
+                            <div class="form-group form-inline col-12 col-md-6">
+                                <label for="Prenom" class="col-auto col-form-label col-form-label-sm">Prénom :</label>
+                                <input type="text" id="prenom" class="form-control form-control-lg" name="user_lastName" required>
+                                <div class="valid-feedback">Valide</div>
+                                <div class="invalid-feedback">Veuillez saisir votre prénom</div>
+                            </div>
+                            <div class="form-group form-inline col-12 col-md-6">
+                                <label for="Adresse" class="col-auto col-form-label col-form-label-sm">Adresse :</label>
+                                <textarea name="user_adfress" id="adresse" class="form-control form-control-lg" cols="10" rows="1" required></textarea>
+                                <div class="valid-feedback">Valide</div>
+                                <div class="invalid-feedback">Veuillez saisir votre adresse</div>
+                            </div>
+                            <div class="form-group form-inline col-12 col-md-6">
+                                <label for="Code" class="col-auto col-form-label col-form-label-sm">Code Postal :</label>
+                                <input type="text" id="code-adresse" class="form-control form-control-lg" name="user_codeAdress" required>
+                                <div class="valid-feedback">Valide</div>
+                                <div class="invalid-feedback">Veuillez saisir votre code postal</div>
+                            </div>
+                            <div class="form-group form-inline col-12 col-md-6">
+                                <label for="Ville" class="col-auto col-form-label col-form-label-sm">Ville :</label>
+                                <input type="text" id="ville-adresse" class="form-control form-control-lg" name="user_city" required>
+                                <div class="valid-feedback">Valide</div>
+                                <div class="invalid-feedback">Veuillez saisir votre ville</div>
+                            </div>
+                            <div class="form-group form-inline col-12 col-md-6">
+                                <label for="Email" class="col-auto col-form-label col-form-label-sm">Email :</label>
+                                <input type="email" id="email" class="form-control form-control-lg" name="user_email" required>
+                                <div class="valid-feedback">Valide</div>
+                                <div class="invalid-feedback">Veuillez saisir votre email</div>
+                            </div>
+                            <button type=submit class="valider btn col-6 col-md-6 btn-outline-secondary mt-3 mb-2 m-auto">Valider</button>
+                        </div>
+
+                    </form>
+                </div>
+            </main>
+            <footer>
+                <div class="container mt-3 text-center">
+                    <div class="row">
+                        <div class="col">
+                            <ul class="list-inline ">
+                                <li class="list-inline-item"><a class="text-decoration-none" href="#">Conditions de ventes</a></li>
+                                <li class="list-inline-item"><a class="text-decoration-none" href="#">Mentions légales</a></li>
+                                <li class="list-inline-item"><a class="text-decoration-none" href="mailto:orinoco@ecommerce.fr">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+        
+    <script type="text/javascript" src="js/panier.js"></script>
+    </body>
+</html>

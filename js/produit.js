@@ -12,22 +12,26 @@ fetch("http://localhost:3000/api/teddies/"+id)
         main = document.getElementById('main-produit');
         newOursProduit = document.createElement('div');
         newOursProduit.className = 'oursProduit row mx-auto mt-2 mb-2 col-md-6';
-        main.append(newOursProduit);         
+        main.append(newOursProduit);
+
         newOursProduitTitle = document.createElement('h1');
         newOursProduit.className = 'oursProduit text-center';
         newOursProduitTitle.textContent = 'Orinoco vous présente ' + ' ' + ours.name;
         newOursProduit.appendChild(newOursProduitTitle);
+
         newOursImage = document.createElement("img");    
         newOursImage.src = ours.imageUrl;    
         newOursImage.className = 'oursImage img-thumbnail rounded max-auto d-block mb-2 img-fluid';
         newOursImage.textContent = ours.imageUrl;
         newOursProduit.appendChild(newOursImage);
+
         newOursPrice = document.createElement("h2");
         newOursPrice.className = 'oursPrice col mt-3 mb-3 text-center';
         newOursPrice.textContent = ours.price + '€';
-        newOursProduit.appendChild(newOursPrice);                
+        newOursProduit.appendChild(newOursPrice); 
+
         newOursProduitButton = document.createElement("select");
-        newOursProduitButton.className = 'oursProduitButton btn btn-outline-secondary dropdown-toggle mt-3 mb-2';
+        newOursProduitButton.className = 'oursProduitButton col-6 btn btn-outline-secondary dropdown-toggle mt-3 mb-2';
         newOursProduit.appendChild(newOursProduitButton);
         for(let i in ours.colors){             
                 newOursProduitColor = document.createElement("option");
@@ -36,10 +40,24 @@ fetch("http://localhost:3000/api/teddies/"+id)
                 newOursProduitColor.textContent = ours.colors[i];
                 newOursProduitButton.appendChild(newOursProduitColor);         
         };
+        console.log(ours);
+
         newOursPanier = document.createElement("button");
-        newOursPanier.className = 'oursPanier btn mt-3 mb-2';
+        newOursPanier.className = 'oursPanier col-7 btn btn-outline-secondary mt-3 mb-2';
+        newOursPanier.setAttribute('id', 'panier')
         newOursPanier.textContent = "Ajouter au panier";
         newOursProduit.appendChild(newOursPanier);
-        console.log(ours);
+
+//Elément sur lequel on veut détecter le clic
+
+        let valideProduit = document.getElementById('panier');
+
+//Ecoute de l'élement cliqué
+        valideProduit.addEventListener('click', function savePanier(){
+                let myPanier = document.getElementsByClassName('oursPanier').value;
+                localStorage.setItem('myPanier', myPanier);
+                });
+        
+        console.log(localStorage.myPanier);
 })
 .catch(error => alert("Erreur : " + error));

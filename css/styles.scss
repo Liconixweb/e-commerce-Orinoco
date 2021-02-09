@@ -15,9 +15,15 @@
     //footer
     @import "./layout/footer";
 
+    //navigation
+    @import "./layout/navigation";
+
 //pages
     //page d'accueil
     @import "./pages/page_accueil";
 
     //page produit
     @import "./pages/page_produit";
+
+    //page panier
+    @import "./pages/page_panier";
