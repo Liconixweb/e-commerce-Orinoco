@@ -30,6 +30,11 @@ fetch("http://localhost:3000/api/teddies/"+id)
         newOursPrice.textContent = ours.price + '€';
         newOursProduit.appendChild(newOursPrice); 
 
+        newOursDescription = document.createElement("p");
+        newOursDescription.className = 'oursDescription col mt-3 mb-3'
+        newOursDescription.textContent = ours.description;
+        newOursProduit.appendChild(newOursDescription);
+
         newOursProduitButton = document.createElement("select");
         newOursProduitButton.className = 'oursProduitButton col-6 btn btn-outline-secondary dropdown-toggle mt-3 mb-2';
         newOursProduit.appendChild(newOursProduitButton);
@@ -53,11 +58,25 @@ fetch("http://localhost:3000/api/teddies/"+id)
         let valideProduit = document.getElementById('panier');
 
 //Ecoute de l'élement cliqué
-        valideProduit.addEventListener('click', function savePanier(){
-                let myPanier = document.getElementsByClassName('oursPanier').value;
-                localStorage.setItem('myPanier', myPanier);
-                });
+
         
-        console.log(localStorage.myPanier);
+
+        valideProduit.addEventListener('click', function savePanier(event){
+                let myPanier = {
+                        id:ours.id, 
+                        nom:ours.nom, 
+                        image: ours.imageUrl, 
+                        color:
+                document.getElementsByClassName('oursProduitColor').value,
+                        price: ours.price
+                };
+                localStorage.setItem(ours.id,JSON.stringify(myPanier))
+        });
+        
+        console.log(localStorage.getItem (ours.id));
+        /*let oursCommande = function loadPanier(){
+                let myPanier = localStorage.getItem('MyPanier');
+                document.getElementsByClassName('oursPanier').value = myPanier;
+                }*/
 })
 .catch(error => alert("Erreur : " + error));
