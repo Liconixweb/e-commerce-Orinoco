@@ -57,26 +57,43 @@ fetch("http://localhost:3000/api/teddies/"+id)
 
         let valideProduit = document.getElementById('panier');
 
-//Ecoute de l'élement cliqué
-
-        
+//Ecoute de l'élement cliqué et stockage dans le localStorage       
 
         valideProduit.addEventListener('click', function savePanier(event){
                 let myPanier = {
-                        id:ours.id, 
-                        nom:ours.nom, 
+                        id: ours._id, 
+                        nom: ours.name, 
                         image: ours.imageUrl, 
-                        color:
-                document.getElementsByClassName('oursProduitColor').value,
-                        price: ours.price
+                        price: ours.price,
                 };
-                localStorage.setItem(ours.id,JSON.stringify(myPanier))
+                let panierStocke = JSON.parse(localStorage.getItem("ours"));
+                console.log(panierStocke);
+
+                /*if(panierStocke){
+                        panierStocke = [];
+                        panierStocke.push(myPanier);
+                        localStorage.setItem("ours",JSON.stringify(myPanier));
+                        console.log(panierStocke);
+                }
+                else{    */      
+                        panierStocke = [];          
+                        panierStocke.push(myPanier);
+                        localStorage.setItem("ours",JSON.stringify(myPanier));
+                        console.log(panierStocke);
+               /* }*/
+
+                //Ajout d'un popup suite à l'ajout au panier
+
+                const popupConfirmation = () =>{
+                        if(window.confirm(`${ours.name} a bien été ajouté au panier
+                        Consultez le panier OK ou revenir à l'accueil ANNULER`)){
+                                window.location.href = "panier.html";
+                        }else{
+                                window.location.href = "index.html";
+                        }
+                }
         });
         
         console.log(localStorage.getItem (ours.id));
-        /*let oursCommande = function loadPanier(){
-                let myPanier = localStorage.getItem('MyPanier');
-                document.getElementsByClassName('oursPanier').value = myPanier;
-                }*/
 })
 .catch(error => alert("Erreur : " + error));
