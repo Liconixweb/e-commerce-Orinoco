@@ -12,7 +12,8 @@ newPanier.appendChild(newPanierTitle);
 
 //Récupération des données du panier dans le localStorage
 
-let oursCommande = localStorage.getItem('ours');
+let oursCommande = JSON.parse(localStorage.getItem('ours'));
+console.log(oursCommande);
 
 //Affichage des articles présents dans le localStorage
 

@@ -66,22 +66,20 @@ fetch("http://localhost:3000/api/teddies/"+id)
                         image: ours.imageUrl, 
                         price: ours.price,
                 };
-                if(typeof localStorage!='undefined'){
+                if(localStorage.getItem('ours')!= null){
+                         /*panierStocke = [];*/
                         let panierStocke = JSON.parse(localStorage.getItem('ours'));
-                        if(panierStocke!=null){
-                                panierStocke = [];
-                                panierStocke.push(myPanier);
-                                localStorage.setItem('ours._id',JSON.stringify(myPanier));
-                                console.log(panierStocke);
-                        } else {
-                                panierStocke = [];          
-                                panierStocke.push(myPanier);
-                                localStorage.setItem('ours._id',JSON.stringify(myPanier));
-                                console.log(panierStocke);
-                        }
-                        localStorage.setItem('ours._id',JSON.stringify(myPanier));
+                        
+                        panierStocke.push(myPanier);
+                        localStorage.setItem('ours',JSON.stringify(panierStocke));
+                        console.log('dans if' + panierStocke);
+                 
+                        /*localStorage.setItem('ours._id',JSON.stringify(myPanier));*/
                 } else {
-                        alert("localStorage n'est pas supporté");
+                        let panierStocke = [];          
+                        panierStocke.push(myPanier);
+                        localStorage.setItem('ours',JSON.stringify(panierStocke));
+                        console.log('dans else' + panierStocke);
                 }
 
         //Ajout d'un popup suite à l'ajout au panier
@@ -94,7 +92,7 @@ fetch("http://localhost:3000/api/teddies/"+id)
                                 window.location.href = "index.html";
                         }
                 }
-                /*window.location = "panier.html";*/
+                popupConfirmation();
         });
         
         console.log(localStorage.getItem (ours.id));
