@@ -15,13 +15,13 @@ fetch("http://localhost:3000/api/teddies/"+id)
         main.append(newOursProduit);
 
         newOursProduitTitle = document.createElement('h1');
-        newOursProduit.className = 'oursProduit text-center';
+        newOursProduit.className = 'oursProduit text-center mb-3';
         newOursProduitTitle.textContent = 'Orinoco vous présente ' + ' ' + ours.name;
         newOursProduit.appendChild(newOursProduitTitle);
 
         newOursImage = document.createElement("img");    
         newOursImage.src = ours.imageUrl;    
-        newOursImage.className = 'oursImage img-thumbnail rounded max-auto d-block mb-2 img-fluid';
+        newOursImage.className = 'oursImage img-thumbnail rounded max-auto d-block mt-3 mb-2 img-fluid';
         newOursImage.textContent = ours.imageUrl;
         newOursProduit.appendChild(newOursImage);
 
@@ -66,23 +66,25 @@ fetch("http://localhost:3000/api/teddies/"+id)
                         image: ours.imageUrl, 
                         price: ours.price,
                 };
-                let panierStocke = JSON.parse(localStorage.getItem("ours"));
-                console.log(panierStocke);
-
-                /*if(panierStocke){
-                        panierStocke = [];
-                        panierStocke.push(myPanier);
-                        localStorage.setItem("ours",JSON.stringify(myPanier));
-                        console.log(panierStocke);
+                if(typeof localStorage!='undefined'){
+                        let panierStocke = JSON.parse(localStorage.getItem('ours'));
+                        if(panierStocke!=null){
+                                panierStocke = [];
+                                panierStocke.push(myPanier);
+                                localStorage.setItem('ours._id',JSON.stringify(myPanier));
+                                console.log(panierStocke);
+                        } else {
+                                panierStocke = [];          
+                                panierStocke.push(myPanier);
+                                localStorage.setItem('ours._id',JSON.stringify(myPanier));
+                                console.log(panierStocke);
+                        }
+                        localStorage.setItem('ours._id',JSON.stringify(myPanier));
+                } else {
+                        alert("localStorage n'est pas supporté");
                 }
-                else{    */      
-                        panierStocke = [];          
-                        panierStocke.push(myPanier);
-                        localStorage.setItem("ours",JSON.stringify(myPanier));
-                        console.log(panierStocke);
-               /* }*/
 
-                //Ajout d'un popup suite à l'ajout au panier
+        //Ajout d'un popup suite à l'ajout au panier
 
                 const popupConfirmation = () =>{
                         if(window.confirm(`${ours.name} a bien été ajouté au panier
@@ -92,6 +94,7 @@ fetch("http://localhost:3000/api/teddies/"+id)
                                 window.location.href = "index.html";
                         }
                 }
+                /*window.location = "panier.html";*/
         });
         
         console.log(localStorage.getItem (ours.id));

@@ -17,13 +17,13 @@
                     <a href="index.html"><img src="images/logo.png" class="img-fluid" alt="Logo Orinoco"/></a>
                 </div>    
                 <div class="icon-retour col-3 text-center">                    
-                    <a href="produit.html"><i class="fas fa-arrow-left"></i></a>
+                    <a href="index.html"><i class="fas fa-arrow-left"></i></a>
                     <p class="retour">Reprendre vos achats</p>
                 </div>
             </nav>
             <main id="main-panier" class="row">
                 <div class="formulaire container" id="formulaire">
-                    <form action="#" method="POST" class="needs-validation" novalidate>
+                    <form id="formulaire" action="#" method="POST" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="form-group form-inline col-12 col-md-6">
                                 <label for="Nom" class="col-auto col-form-label col-form-label-sm">Nom de famille :</label>
@@ -61,9 +61,8 @@
                                 <div class="valid-feedback">Valide</div>
                                 <div class="invalid-feedback">Veuillez saisir votre email</div>
                             </div>
-                            <button type=submit class="valider btn col-6 col-md-6 btn-outline-secondary mt-3 mb-2 m-auto">Valider</button>
+                            <button type="submit" onclick="sendData({test:'ok'})" class="valider btn col-6 col-md-6 btn-outline-secondary mt-3 mb-2 m-auto">Valider</button>
                         </div>
-
                     </form>
                 </div>
             </main>
