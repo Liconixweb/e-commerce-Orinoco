@@ -85,8 +85,9 @@ fetch("http://localhost:3000/api/teddies/"+id)
         //Ajout d'un popup suite à l'ajout au panier
 
                 const popupConfirmation = () =>{
-                        if(window.confirm(`${ours.name} a bien été ajouté au panier
-                        Consultez le panier OK ou revenir à l'accueil ANNULER`)){
+                        if(window.confirm(`${ours.name} a bien été ajouté au panier. 
+                                \nCliquez sur OK, pour valider votre commande. 
+                                \nCliquez sur ANNULER pour continuer vos achats.`)){
                                 window.location.href = "panier.html";
                         }else{
                                 window.location.href = "index.html";

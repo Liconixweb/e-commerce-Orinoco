@@ -17,25 +17,32 @@ console.log(oursCommande);
 
 //Affichage des articles présents dans le localStorage
 
-oursPanier = document.createElement('div');
-oursPanier.className = 'oursPanier row mx-auto mt-2 mb-2 col-md-6';
-oursPanier.textContent = 'Les ours commandés : ' + oursCommande;
-newPanier.appendChild(oursPanier);
+fetch("http://localhost:3000/api/teddies/"+id)
+.then(response => response.json())
+.then(ours => {      
 
-buttonSupprime = document.createElement('button');
-buttonSupprime.className = 'buttonSupprime fas fa-trash-alt col-1 btn btn-outline-secondary justify-content-center align-items-end';
-oursPanier.appendChild(buttonSupprime);
+    oursPanier = document.createElement('div');
+    oursPanier.className = 'oursPanier row mx-auto mt-2 mb-2 col-md-6';
+    oursPanier.textContent = 'Les ours commandés : ' + oursCommande;
+    newPanier.appendChild(oursPanier);
+
+    buttonSupprime = document.createElement('button');
+    buttonSupprime.className = 'buttonSupprime fas fa-trash-alt col-1 btn btn-outline-secondary justify-content-center align-items-end';
+    oursPanier.appendChild(buttonSupprime);
 
 //Supression de l'article après un clique
 
-buttonSupprime.addEventListener('click', function supprimeArticle(event){
-    localStorage.removeItem('ours');
-});
+    buttonSupprime.addEventListener('click', function supprimeArticle(event){
+        localStorage.removeItem('ours');
+    });
 
-totalCommande = document.createElement('h2');
-totalCommande.className = 'totalCommande text-center';
-totalCommande.textContent = 'Total de votre commande :';
-newPanier.appendChild(totalCommande);
+    totalCommande = document.createElement('h2');
+    totalCommande.className = 'totalCommande text-center';
+    totalCommande.textContent = 'Total de votre commande :';
+    newPanier.appendChild(totalCommande);
+
+})
+.catch(error => alert("Erreur : " + error));
 
 //Envoi des formulaires avec JavaScript
 
