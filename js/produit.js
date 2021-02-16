@@ -67,8 +67,7 @@ fetch("http://localhost:3000/api/teddies/"+id)
                         price: ours.price,
                 };
 
-                /*localStorage.setItem(ours._id, JSON.stringify(myPanier));*/
-                
+                /*localStorage.setItem(ours._id, JSON.stringify(myPanier));*/                
 
                 if(localStorage.getItem(ours._id)!= null){
                         let panierStocke = JSON.parse(localStorage.getItem(ours._id));
