@@ -62,23 +62,25 @@ fetch("http://localhost:3000/api/teddies/"+id)
         valideProduit.addEventListener('click', function savePanier(event){
                 let myPanier = {
                         id: ours._id, 
-                        nom: ours.name, 
-                        image: ours.imageUrl, 
+                        name: ours.name, 
+                        imageUrl: ours.imageUrl, 
                         price: ours.price,
                 };
-                if(localStorage.getItem('ours')!= null){
-                         /*panierStocke = [];*/
-                        let panierStocke = JSON.parse(localStorage.getItem('ours'));
+
+                /*localStorage.setItem(ours._id, JSON.stringify(myPanier));*/
+                
+
+                if(localStorage.getItem(ours._id)!= null){
+                        let panierStocke = JSON.parse(localStorage.getItem(ours._id));
                         
                         panierStocke.push(myPanier);
-                        localStorage.setItem('ours',JSON.stringify(panierStocke));
+                        localStorage.setItem(ours._id,JSON.stringify(panierStocke));
                         console.log('dans if' + panierStocke);
                  
-                        /*localStorage.setItem('ours._id',JSON.stringify(myPanier));*/
                 } else {
-                        let panierStocke = [];          
+                        let panierStocke = [];       
                         panierStocke.push(myPanier);
-                        localStorage.setItem('ours',JSON.stringify(panierStocke));
+                        localStorage.setItem(ours._id,JSON.stringify(panierStocke));
                         console.log('dans else' + panierStocke);
                 }
 
@@ -96,6 +98,6 @@ fetch("http://localhost:3000/api/teddies/"+id)
                 popupConfirmation();
         });
         
-        console.log(localStorage.getItem (ours.id));
+        console.log(localStorage.getItem (ours._id));
 })
 .catch(error => alert("Erreur : " + error));

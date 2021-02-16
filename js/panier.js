@@ -5,45 +5,122 @@ newPanier = document.createElement('div');
 newPanier.className = 'newPanier row mx-auto mt-2 mb-2 col-md-6';
 main.prepend(newPanier);
 
+//Récupération des données du panier dans le localStorage
+
+let panierStocke = [];
+for(let i=0; i <localStorage.length; i++){    
+    let id = localStorage.key(i);
+    panierStocke.push(JSON.parse(localStorage.getItem(id)));
+}
+console.log(panierStocke);
+
 newPanierTitle = document.createElement('h1');
 newPanierTitle.className = 'oursPanierTitle text-center';
 newPanierTitle.textContent = 'Votre Panier :';
 newPanier.appendChild(newPanierTitle);
 
-//Récupération des données du panier dans le localStorage
-
-let oursCommande = JSON.parse(localStorage.getItem('ours'));
-console.log(oursCommande);
+oursCommandeTitle = document.createElement('p');
+oursCommandeTitle.className = 'oursCommandeTitle row mx-auto mt-2 mb-3 col-md-6';
+oursCommandeTitle.textContent = 'Les ours commandés : ';
+newPanier.appendChild(oursCommandeTitle);
 
 //Affichage des articles présents dans le localStorage
 
-fetch("http://localhost:3000/api/teddies/"+id)
-.then(response => response.json())
-.then(ours => {      
+for(let i=0; i < panierStocke.length; i++){      
 
     oursPanier = document.createElement('div');
-    oursPanier.className = 'oursPanier row mx-auto mt-2 mb-2 col-md-6';
-    oursPanier.textContent = 'Les ours commandés : ' + oursCommande;
+    oursPanier.className = 'oursPanier row mx-auto mt-2 mb-3 col-md-6 d-flex flex-row';
     newPanier.appendChild(oursPanier);
 
+    oursPanierTitle = document.createElement('p');
+    oursPanierTitle.className = 'oursPanierTitle col-3 mt-3 mb-3 text-center justify-content-start align-content-center';
+    oursPanierTitle.textContent = panierStocke[i][0].name;
+    oursPanier.appendChild(oursPanierTitle);
+
+
+//Gestion des quantités dans le panier
+
+    oursPanierQuantite = document.createElement('form');
+    oursPanierQuantite.className = 'oursPanierQuantite col-3 mt-3 mb-3 d-flex flex-row';
+    oursPanier.appendChild(oursPanierQuantite);
+
+    oursPanierQuantiteMoins = document.createElement('button');
+    oursPanierQuantiteMoins.className = 'oursPanierQuantiteMoins col-3 btn-sm btn-secondary h-25 mt-3 mb-3 text-center';
+    oursPanierQuantiteMoins.textContent = '-';
+    oursPanierQuantite.appendChild(oursPanierQuantiteMoins);
+
+    oursPanierQuantiteMoins.addEventListener('click', function retraitArticle(event){
+        console.log(quantite);
+    });    
+
+    oursPanierQuantiteResult = document.createElement('input');
+    oursPanierQuantiteResult.className = 'oursPanierQuantiteResult col-3 h-25 w-50 mt-3 mb-3 text-center';
+    oursPanierQuantiteResult.setAttribute("value", 1, "maxlength", 2, "type", "texte");
+    oursPanierQuantite.appendChild(oursPanierQuantiteResult);
+
+    oursPanierQuantitePlus = document.createElement('button');
+    oursPanierQuantitePlus.className = 'oursPanierQuantitePlus col-3 btn-sm btn-secondary h-25 mt-3 mb-3 text-center';
+    oursPanierQuantitePlus.textContent = '+';
+    oursPanierQuantite.appendChild(oursPanierQuantitePlus);
+
+    console.log(panierStocke[i][0].length);
+
+    oursPanierImage = document.createElement('img');    
+    oursPanierImage.src = panierStocke[i][0].imageUrl;
+    oursPanierImage.className = 'oursPanierImage col-4 img-thumbnail rounded max-auto text-center justify-content-start align-content-center w-50 h-50 mt-4 mb-2 img-fluid';
+    oursPanierImage.textContent = panierStocke[i][0].imageUrl;
+    oursPanier.appendChild(oursPanierImage);    
+
+    oursPanierPrice = document.createElement('p');
+    oursPanierPrice.className = 'oursPanierPrice col-3 mt-3 mb-3 justify-content-start align-content-center';
+    oursPanierPrice.textContent = panierStocke[i][0].price + '€';
+    oursPanier.appendChild(oursPanierPrice); 
+
     buttonSupprime = document.createElement('button');
-    buttonSupprime.className = 'buttonSupprime fas fa-trash-alt col-1 btn btn-outline-secondary justify-content-center align-items-end';
+    buttonSupprime.className = 'buttonSupprime fas fa-trash-alt col-2 btn btn-outline-secondary justify-content-start align-content-center';
     oursPanier.appendChild(buttonSupprime);
+
 
 //Supression de l'article après un clique
 
-    buttonSupprime.addEventListener('click', function supprimeArticle(event){
-        localStorage.removeItem('ours');
-    });
+buttonSupprime.addEventListener('click', function supprimeArticle(event){
+    localStorage.removeItem(panierStocke);
+});}
 
-    totalCommande = document.createElement('h2');
-    totalCommande.className = 'totalCommande text-center';
-    totalCommande.textContent = 'Total de votre commande :';
-    newPanier.appendChild(totalCommande);
+oursCommandeTotal = document.createElement('p');
+oursCommandeTotal.className = 'oursCommandeTotal row mx-auto mt-2 mb-3 col-md-6';
+let total = [Number(panierStocke.price)];
+console.log(total);
+oursCommandeTotal.textContent = 'Total de la commande : ';
+newPanier.appendChild(oursCommandeTotal);
 
-})
-.catch(error => alert("Erreur : " + error));
 
+
+    
+        
+    
+/*if(localStorage.get !== "" ){ 
+    let panierStocke = [];         
+        for(let i=0; i <localStorage.length; i++){ 
+            let key = localStorage.key(i);
+            panierStocke.push(JSON.parse(localStorage.getItem(key)));
+        }
+
+    oursPanier = document.createElement('div');
+    oursPanier.className = 'oursPanier row mx-auto mt-2 mb-2 col-md-6';
+    newPanier.appendChild(oursPanier);
+
+    oursPanierVide = document.createElement('h1');
+    oursPanierVide.className = 'oursPanierVide row mx-auto mt-2 mb-2 col-md-6';
+    oursPanierVide.textContent = 'Votre panier est vide !';
+    oursPanier.appendChild(oursPanierVide);
+    console.log('Panier vide !');
+
+} else {
+    
+    console.log('Un ou plusieurs articles sont dans le panier !');
+*/        
+/*
 //Envoi des formulaires avec JavaScript
 
 function sendData(data){
@@ -69,7 +146,7 @@ function sendData(data){
     window.location = "confirmation.html";
 }
 
-/*window.addEventListener('load', function(){
+window.addEventListener('load', function(){
     function sendData(){
         let xhr = new XMLHttpRequest();
         let formData = new FormData(form);
