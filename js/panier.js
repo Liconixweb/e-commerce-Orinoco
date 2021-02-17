@@ -29,41 +29,72 @@ newPanier.appendChild(oursCommandeTitle);
 for(let i=0; i < panierStocke.length; i++){      
 
     oursPanier = document.createElement('div');
-    oursPanier.className = 'oursPanier row mx-auto mt-2 mb-3 col-md-6 d-flex flex-row';
+    oursPanier.className = 'oursPanier row mx-auto mt-2 mb-3 col-md-6 d-inline-flex flex-row flex-wrap align-content-between';
     newPanier.appendChild(oursPanier);
+
+//Gestion des quantités dans le panier
+
+    oursPanierQuantite = document.createElement('form');
+    oursPanierQuantite.className = 'oursPanierQuantite col-3 h- mt-3 mb-3 d-flex flex-row justify-content-start align-content-center';
+    oursPanier.appendChild(oursPanierQuantite);
+
+    oursPanierQuantiteMoins = document.createElement('button');
+    oursPanierQuantiteMoins.className = 'oursPanierQuantiteMoins col-3 btn btn-secondary mt-3 mb-3 text-center';
+    oursPanierQuantiteMoins.setAttribute('id', 'moins');
+    oursPanierQuantiteMoins.textContent = '-';
+    oursPanierQuantite.appendChild(oursPanierQuantiteMoins);   
+
+    oursPanierQuantiteResult = document.createElement('input');
+    oursPanierQuantiteResult.className = 'oursPanierQuantiteResult col-6 mt-3 mb-3 text-center';
+    oursPanierQuantiteResult.setAttribute('value', panierStocke[i][0].quantite);
+    oursPanierQuantiteResult.setAttribute('id', 'result');
+    oursPanierQuantiteResult.setAttribute('type', 'text');
+    oursPanierQuantite.appendChild(oursPanierQuantiteResult);
+
+    oursPanierQuantitePlus = document.createElement('button');
+    oursPanierQuantitePlus.className = 'oursPanierQuantitePlus col-3  btn btn-secondary mt-3 mb-3 text-center';
+    oursPanierQuantitePlus.setAttribute('id', 'plus');
+    oursPanierQuantitePlus.textContent = '+';
+    oursPanierQuantite.appendChild(oursPanierQuantitePlus);
+
+    let quantite = document.getElementById('result');
+    result = result.value,10;
+    console.log(oursPanierQuantiteResult.value);
+    let plus = document.getElementById('plus');
+    let moins = document.getElementById('moins');
+
+//Modification du button
+
+    quantite.addEventListener('blur', function(){
+        result = document.getElementById('result');
+        result = result.value,10;
+        localStorage.setItem("quantite", result.value);
+        console.log(result);
+    });
+
+//Button moins
+
+   moins.addEventListener('click', function retraitArticle(event){
+    if(result >0 && result <=99){
+        result--;
+        document.getElementById('result').value = result;
+    }    
+    }); 
+console.log(result + " Retrait d'un produit");
+//Button plus
+
+    oursPanierQuantitePlus.addEventListener('click', function ajoutArticle(event){
+        if(result >= 0 && result < 99){
+            result++;
+            document.getElementById('result').value = result;
+        }        
+    }); 
+console.log(result + " Ajout d'un produit");
 
     oursPanierTitle = document.createElement('p');
     oursPanierTitle.className = 'oursPanierTitle col-3 mt-3 mb-3 text-center justify-content-start align-content-center';
     oursPanierTitle.textContent = panierStocke[i][0].name;
     oursPanier.appendChild(oursPanierTitle);
-
-
-//Gestion des quantités dans le panier
-
-    oursPanierQuantite = document.createElement('form');
-    oursPanierQuantite.className = 'oursPanierQuantite col-3 mt-3 mb-3 d-flex flex-row';
-    oursPanier.appendChild(oursPanierQuantite);
-
-    oursPanierQuantiteMoins = document.createElement('button');
-    oursPanierQuantiteMoins.className = 'oursPanierQuantiteMoins col-3 btn-sm btn-secondary h-25 mt-3 mb-3 text-center';
-    oursPanierQuantiteMoins.textContent = '-';
-    oursPanierQuantite.appendChild(oursPanierQuantiteMoins);
-
-    oursPanierQuantiteMoins.addEventListener('click', function retraitArticle(event){
-        console.log(quantite);
-    });    
-
-    oursPanierQuantiteResult = document.createElement('input');
-    oursPanierQuantiteResult.className = 'oursPanierQuantiteResult col-3 h-25 w-50 mt-3 mb-3 text-center';
-    oursPanierQuantiteResult.setAttribute("value", 1, "maxlength", 2, "type", "texte");
-    oursPanierQuantite.appendChild(oursPanierQuantiteResult);
-
-    oursPanierQuantitePlus = document.createElement('button');
-    oursPanierQuantitePlus.className = 'oursPanierQuantitePlus col-3 btn-sm btn-secondary h-25 mt-3 mb-3 text-center';
-    oursPanierQuantitePlus.textContent = '+';
-    oursPanierQuantite.appendChild(oursPanierQuantitePlus);
-
-    console.log(panierStocke[i][0].length);
 
     oursPanierImage = document.createElement('img');    
     oursPanierImage.src = panierStocke[i][0].imageUrl;

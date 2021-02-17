@@ -11,7 +11,7 @@ fetch("http://localhost:3000/api/teddies/"+id)
 .then(ours => {      
         main = document.getElementById('main-produit');
         newOursProduit = document.createElement('div');
-        newOursProduit.className = 'oursProduit row mx-auto mt-2 mb-2 col-md-6';
+        newOursProduit.className = 'oursProduit row d-flex flex-column mx-auto mt-2 mb-2 col-md-6';
         main.append(newOursProduit);
 
         newOursProduitTitle = document.createElement('h1');
@@ -34,6 +34,37 @@ fetch("http://localhost:3000/api/teddies/"+id)
         newOursDescription.className = 'oursDescription col mt-3 mb-3'
         newOursDescription.textContent = ours.description;
         newOursProduit.appendChild(newOursDescription);
+
+        //Gestion des quantités dans le panier
+
+        oursPanierQuantite = document.createElement('form');
+        oursPanierQuantite.className = 'oursPanierQuantite col mt-1 mb-1 d-flex flex-row flex-wrap justify-content-center';
+        newOursProduit.appendChild(oursPanierQuantite);
+
+        oursPanierQuantiteMoins = document.createElement('button');
+        oursPanierQuantiteMoins.className = 'oursPanierQuantiteMoins col-1 btn btn-secondary mt-3 mb-3 text-center';
+        oursPanierQuantiteMoins.setAttribute('id', 'moins');
+        oursPanierQuantiteMoins.textContent = '-';
+        oursPanierQuantite.appendChild(oursPanierQuantiteMoins);   
+
+        oursPanierQuantiteResult = document.createElement('input');
+        oursPanierQuantiteResult.className = 'oursPanierQuantiteResult col-2 mt-3 mb-3 text-center';
+        oursPanierQuantiteResult.setAttribute('value', 1);
+        oursPanierQuantiteResult.setAttribute('id', 'result');
+        oursPanierQuantiteResult.setAttribute('type', 'text');
+        oursPanierQuantite.appendChild(oursPanierQuantiteResult);
+
+        oursPanierQuantitePlus = document.createElement('button');
+        oursPanierQuantitePlus.className = 'oursPanierQuantitePlus col-1 btn btn-secondary mt-3 mb-3 text-center';
+        oursPanierQuantitePlus.setAttribute('id', 'plus');
+        oursPanierQuantitePlus.textContent = '+';
+        oursPanierQuantite.appendChild(oursPanierQuantitePlus);
+
+        let quantite = document.getElementById('result');
+        result = result.value,10;
+        console.log(oursPanierQuantiteResult.value);
+        let plus = document.getElementById('plus');
+        let moins = document.getElementById('moins');
 
         newOursProduitButton = document.createElement("select");
         newOursProduitButton.className = 'oursProduitButton col-6 btn btn-outline-secondary dropdown-toggle mt-3 mb-2';
@@ -65,9 +96,8 @@ fetch("http://localhost:3000/api/teddies/"+id)
                         name: ours.name, 
                         imageUrl: ours.imageUrl, 
                         price: ours.price,
+                        quantite: document.getElementById('result').value
                 };
-
-                /*localStorage.setItem(ours._id, JSON.stringify(myPanier));*/                
 
                 if(localStorage.getItem(ours._id)!= null){
                         let panierStocke = JSON.parse(localStorage.getItem(ours._id));

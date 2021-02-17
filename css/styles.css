@@ -4,28 +4,43 @@
 }
 
 h1 {
-  font-family: 'Lobster', cursive;
   font-weight: bold;
 }
 
 h2 {
-  font-family: 'Lobster', cursive;
   font-weight: bold;
 }
 
 h3 {
-  font-family: 'Lobster', cursive;
   font-weight: bold;
 }
 
 h4 {
-  font-family: 'Lobster', cursive;
   font-weight: bold;
 }
 
 p {
-  font-family: 'Lobster', cursive;
-  font-weight: bold;
+  font-weight: 200;
+}
+
+h1 {
+  font-family: "Lobster", cursive;
+}
+
+h2 {
+  font-family: "Lobster", cursive;
+}
+
+h3 {
+  font-family: "Lobster", cursive;
+}
+
+h4 {
+  font-family: "Lobster", cursive;
+}
+
+p {
+  font-family: "Lobster", cursive;
 }
 
 ul {
