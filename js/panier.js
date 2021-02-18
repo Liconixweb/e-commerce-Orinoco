@@ -34,7 +34,7 @@ for(let i=0; i < panierStocke.length; i++){
 
     oursPanierImage = document.createElement('img');    
     oursPanierImage.src = panierStocke[i][0].imageUrl;
-    oursPanierImage.className = 'oursPanierImage col img-thumbnail rounded max-auto text-center w-50 h-50 mt-4 mb-2 img-fluid';
+    oursPanierImage.className = 'oursPanierImage col max-auto text-center w-50 h-50 mt-4 mb-2 img-fluid';
     oursPanierImage.textContent = panierStocke[i][0].imageUrl;
     oursPanier.appendChild(oursPanierImage);
 
