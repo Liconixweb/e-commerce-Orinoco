@@ -35,27 +35,6 @@ fetch("http://localhost:3000/api/teddies/"+id)
         newOursDescription.textContent = ours.description;
         newOursProduit.appendChild(newOursDescription);
 
-        //Gestion des quantités dans le panier
-
-        oursPanierQuantite = document.createElement('form');
-        oursPanierQuantite.className = 'oursPanierQuantite col mt-1 mb-1';
-        oursPanierQuantite.textContent = 'quantité :';
-        newOursProduit.appendChild(oursPanierQuantite);
-
-        oursPanierQuantiteResult = document.createElement('input');
-        oursPanierQuantiteResult.className = 'oursPanierQuantiteResult col-2 ml-3 text-center';
-        oursPanierQuantiteResult.setAttribute('value', 1);
-        oursPanierQuantiteResult.setAttribute('id', 'result');
-        oursPanierQuantiteResult.setAttribute('type', 'number');
-        oursPanierQuantiteResult.setAttribute('min', '1');
-        oursPanierQuantite.appendChild(oursPanierQuantiteResult);
-
-        let quantite = document.getElementById('result');
-        result = result.value;
-        console.log(oursPanierQuantiteResult.value);
-
-        console.log(result);
-
         newOursProduitButton = document.createElement("select");
         newOursProduitButton.className = 'oursProduitButton col-6 btn btn-outline-secondary dropdown-toggle mt-3 mb-2';
         newOursProduit.appendChild(newOursProduitButton);
@@ -86,20 +65,18 @@ fetch("http://localhost:3000/api/teddies/"+id)
                         name: ours.name, 
                         imageUrl: ours.imageUrl, 
                         price: ours.price,
-                        quantite: document.getElementById('result').value
                 };
 
-                if(localStorage.getItem(ours._id)!= null){
-                        localStorage.removeItem(ours._id);
-                        let panierStocke = JSON.parse(localStorage.getItem(ours._id));                        
+                if(localStorage.getItem('panier')!= null){
+                        let panierStocke = JSON.parse(localStorage.getItem('panier'));                        
                         panierStocke.push(myPanier);
-                        localStorage.setItem(ours._id,JSON.stringify(panierStocke));
+                        localStorage.setItem('panier',JSON.stringify(panierStocke));
                         console.log('dans if' + panierStocke);
                                          
                 } else {
                         let panierStocke = [];       
                         panierStocke.push(myPanier);
-                        localStorage.setItem(ours._id,JSON.stringify(panierStocke));
+                        localStorage.setItem('panier',JSON.stringify(panierStocke));
                         console.log('dans else' + panierStocke);
                 }
 
@@ -117,6 +94,6 @@ fetch("http://localhost:3000/api/teddies/"+id)
                 popupConfirmation();
         });
         
-        console.log(localStorage.getItem (ours._id));
+        console.log(localStorage.getItem ('panier'));
 })
 .catch(error => alert("Erreur : " + error));

@@ -23,6 +23,10 @@ p {
   font-weight: 200;
 }
 
+form {
+  font-weight: normal;
+}
+
 h1 {
   font-family: "Lobster", cursive;
 }
