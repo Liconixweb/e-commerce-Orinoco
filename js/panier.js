@@ -64,18 +64,25 @@ if (panierStocke != null) {
             buttonSupprime = document.createElement('button');
             buttonSupprime.className = 'buttonSupprime fas fa-trash-alt  btn btn-outline-secondary text-center';
             oursPanier.appendChild(buttonSupprime);
-console.log(i);
-            buttonSupprime.addEventListener('click', function supprimeArticle(event){
-                
-                
-                localStorage.removeItem(panierStocke[i]);
-            });
+            
+            console.log(panierStocke);          
+            
+            buttonSupprime.addEventListener('click', function supprimeArticle(event){                  
+                let index = i.target;                
+                panierStocke.splice(index,1);             
+                localStorage.setItem('panier',JSON.stringify(panierStocke));
+                window.location.href = "panier.html";
+                if (panierStocke.length === 0){
+                    localStorage.removeItem('panier');
+                }
+            });        
+            console.log(panierStocke);
         }
         //Calcul du total de la commande
 
     oursCommandeTotal = document.createElement('p');
     oursCommandeTotal.className = 'oursCommandeTotal row mx-auto mt-2 mb-3 col-md-6';    
-    oursCommandeTotal.textContent = 'Total de la commande : ' + totalCommande;
+    oursCommandeTotal.textContent = 'Total de la commande : ' + totalCommande + ' €';
     newPanier.appendChild(oursCommandeTotal);
     }
 } else {
@@ -85,8 +92,7 @@ console.log(i);
     newPanier.appendChild(newPanierTitle);
 }
 
-/*//Envoi des produits commandés
-
+//Tableau des id des produits commandés
 
 let commande = [];
 for (let i in panierStocke){
@@ -94,39 +100,79 @@ for (let i in panierStocke){
 }
 console.log(commande);
 
-//Envoi des formulaires avec JavaScript
+//Validation et envoi des id des produits commandés et du formulaire valide
 
-let formulaire = {
-    firstName: nom,
-    lastName: prenom,
-    adress: adresse,
-    city: ville-adresse,
-    email: email
-};
-let user = [];
-user.push(formulaire);
-console.log(user);
+valider = document.getElementById('valide');
+let firstName = document.getElementById('nom');
+let regexFirstName = /[a-zA-Z]\.\s/g;
+let lastName = document.getElementById('prenom');
+let regexLastName = /[a-zA-Z]\.\s/g;
+let address = document.getElementById('adresse');
+let regexAdress = /\w\.\s\n/g;
+let codeAddress = document.getElementById('code-adresse');
+let regexCodeAddress = /\d\s/g;
+let city = document.getElementById('ville');
+let regexCity = /[a-zA-Z]\.\s/g;
+let email = document.getElementById('mail');
+let regexEmail = /\d\w\./g;
 
-const envoi = {
-    method: 'POST',
-    body: JSON.stringify(user, commande),
-    headers: {
-        'Content-Type': 'application/json'
-    }
-};
+valider.addEventListener('click', function valideCommande(event){
+    if(regexFirstName.test(firstName)
+        && regexLastName.test(lastName)
+        && regexAdress.test(address)
+        && regexCodeAdress.test(codeAddress)
+        && regexCity.test(city)
+        && regexEmail.test(email)
+        === true
+    ){
+        let formulaire = {
+            firstName: firstName.value,
+            lastName: lastName.value,
+            adress: adress.value,
+            city: city.value,
+            email: email.value
+        };        
+        let user = [];
+        user.push(formulaire);
+        console.log(user);
+        console.log('Le formulaire est valide !')
 
-fetch("http://localhost:3000/api/order/, envoi")
-.then(response => response.json())
-.then(user => { 
-    console.log(user);
-})
-.catch(error => alert("Erreur : " + error));
+        const envoi = {
+            method: 'POST',
+            body: JSON.stringify({user,commande}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };           
+            fetch("http://localhost:3000/api/order/"+ envoi)
+            .then(response => response.json())
+            .then(user => { 
+                console.log(user);
+            })
+            .catch(error => alert("Erreur : " + error));
+        
+    } else{
+        window.location.href = "panier.js";
+        console.log("Le formulaire n'est pas valide !")
+        alert('Une ou plusieurs données du formulaire sont incorrectes, veuillez les vérifier !')
+   }
+});
 
+
+
+        /**/
+    
+    
+        
+
+  
+    
 
 
 
 
 /*
+
 function sendData(data){
     let xhr = new XMLHttpRequest();
     let formData = new FormData();
@@ -143,7 +189,7 @@ function sendData(data){
         alert('Une erreur est survenue !');
     });
 
-    xhr.open('POST', 'http://localhost:3000/api/teddies/');
+    xhr.open('POST', 'http://localhost:3000/order/');
 
     xhr.send(formData);
 

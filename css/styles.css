@@ -23,10 +23,6 @@ p {
   font-weight: 200;
 }
 
-form {
-  font-weight: normal;
-}
-
 h1 {
   font-family: "Lobster", cursive;
 }
@@ -47,6 +43,12 @@ p {
   font-family: "Lobster", cursive;
 }
 
+/*input:invalided{
+    border: 2 px dashed red;
+}
+input:invalided{
+    border: 1 px dashed green;
+}*/
 ul {
   font-family: "Lobster", cursive;
 }
