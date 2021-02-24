@@ -8,12 +8,12 @@ fetch("http://localhost:3000/api/teddies")
 
         main = document.getElementById('main');
         newOurs = document.createElement('div');
-        newOurs.className = 'ours row mx-auto mt-2 col-md-6';
+        newOurs.className = 'ours row mx-auto mt-2 col-md-6 rounded bg-white';
         main.append(newOurs);
 
         newOursImage = document.createElement("img");    
         newOursImage.src = ours[i].imageUrl;    
-        newOursImage.className = 'oursImage img-thumbnail rounded max-auto d-block mb-2 img-fluid h-75';
+        newOursImage.className = 'oursImage img-thumbnail border-0 max-auto d-block mb-2 img-fluid h-75';
         newOursImage.textContent = ours[i].imageUrl;
         newOurs.append(newOursImage);
 

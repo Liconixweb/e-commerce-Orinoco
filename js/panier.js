@@ -38,7 +38,7 @@ if (panierStocke != null) {
         for(let i=0; i < panierStocke.length; i++){      
 
             oursPanier = document.createElement('div');
-            oursPanier.className = 'oursPanier row d-flex align-items-center mt-2 mb-3 m-md-0 h-md-15';
+            oursPanier.className = 'oursPanier row d-flex align-items-center mt-2 mb-3 m-md-1 h-md-15 rounded bg-white';
             newPanier.appendChild(oursPanier);
 
             oursPanierImage = document.createElement('img');    
