@@ -8,7 +8,7 @@ fetch("http://localhost:3000/api/teddies")
 
         main = document.getElementById('main');
         newOurs = document.createElement('div');
-        newOurs.className = 'ours row mx-auto mt-2 col-md-6 rounded bg-white';
+        newOurs.className = 'ours row mx-auto mt-2 col-md-6 rounded bg-white shadow';
         main.append(newOurs);
 
         newOursImage = document.createElement("img");    

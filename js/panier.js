@@ -35,21 +35,24 @@ if (panierStocke != null) {
 
         //Affichage des articles présents dans le localStorage
 
-        for(let i=0; i < panierStocke.length; i++){      
+        /*for(let i=0; i < panierStocke.length; i++)*/
+        panierStocke.forEach((ours,index) =>{      
+            console.log(ours);
+            console.log(index);
 
             oursPanier = document.createElement('div');
-            oursPanier.className = 'oursPanier row d-flex align-items-center mt-2 mb-3 m-md-1 h-md-15 rounded bg-white';
+            oursPanier.className = 'oursPanier row d-flex align-items-center mt-2 mb-3 m-md-1 h-md-15 rounded bg-white shadow';
             newPanier.appendChild(oursPanier);
 
             oursPanierImage = document.createElement('img');    
-            oursPanierImage.src = panierStocke[i].imageUrl;
+            oursPanierImage.src = ours.imageUrl;
             oursPanierImage.className = 'oursPanierImage col align-self-center w-50 h-50 mt-2 mb-2 img-fluid';
-            oursPanierImage.textContent = panierStocke[i].imageUrl;
+            oursPanierImage.textContent = ours.imageUrl;
             oursPanier.appendChild(oursPanierImage);
 
             oursPanierTitle = document.createElement('p');
             oursPanierTitle.className = 'oursPanierTitle col m-0 align-self-center justify-content-center text-center';
-            oursPanierTitle.textContent = panierStocke[i].name;
+            oursPanierTitle.textContent = ours.name;
             oursPanier.appendChild(oursPanierTitle);
 
         // Gestion du prix des articles commandés
@@ -57,22 +60,22 @@ if (panierStocke != null) {
             oursPanierPrice = document.createElement('p');
             oursPanierPrice.className = 'oursPanierPrice col m-0 flex-nowrap align-self-center justify-content-center text-center';
             oursPanierPrice.setAttribute('id', 'prixArticle');
-            oursPanierPrice.textContent = 'Prix total : ' + panierStocke[i].price + "€";
+            oursPanierPrice.textContent = 'Prix total : ' + ours.price + "€";
             oursPanier.appendChild(oursPanierPrice); 
             
-            totalCommande = totalCommande + panierStocke[i].price;
+            totalCommande = totalCommande + ours.price;
 
         //Suppression de l'article après un clique
 
             buttonSupprime = document.createElement('button');
-            buttonSupprime.className = 'buttonSupprime fas fa-trash-alt col-md btn btn-outline-secondary text-center';
+            buttonSupprime.className = 'buttonSupprime fas fa-trash-alt col-md btn btn-outline-secondary text-center m-md-2';
+            buttonSupprime.setAttribute("data-index", index);
             oursPanier.appendChild(buttonSupprime);
             
             console.log(panierStocke);          
             
             buttonSupprime.addEventListener('click', function supprimeArticle(event){                  
-                let index = event.target;         
-                console.log(index);                       
+                                 
                 panierStocke.splice(index,1);             
                 localStorage.setItem('panier',JSON.stringify(panierStocke));
                 window.location.href = "panier.html";
@@ -82,7 +85,7 @@ if (panierStocke != null) {
             });        
             console.log(panierStocke);
     
-        }
+        })
         //Calcul du total de la commande
 
     oursCommandeTotal = document.createElement('p');
