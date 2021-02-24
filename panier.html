@@ -22,6 +22,7 @@
                 </div>
             </nav>
             <main id="main-panier" class="row">
+                <!--Mise en place du formulaire de contact-->
                 <div class="formulaire container" id="formulaire">
                     <form id="contact" action="#" method="POST" class="was-validated needs-validation" novalidate>
                         <div class="form-row d-flex flex-column flex-md-row flex-md-wrap m-md-2 justify-content-center align-items-center">
@@ -39,15 +40,9 @@
                             </div>
                             <div class="form-group form-inline col-12 col-md-5 m-md-2">
                                 <label for="Adresse" class="col-auto col-form-label col-form-label-sm">Adresse :</label>
-                                <textarea name="user_adfress" id="adresse" class="form-control form-control-lg" cols="10" rows="1" required></textarea>
+                                <textarea name="user_address" id="adresse" class="form-control form-control-lg" cols="10" rows="1" required></textarea>
                                 <div class="valid-feedback">Valide</div>
                                 <div class="invalid-feedback">Veuillez saisir votre adresse</div>
-                            </div>
-                            <div class="form-group form-inline col-12 col-md-5 m-md-2">
-                                <label for="Code" class="col-auto col-form-label col-form-label-sm">Code Postal :</label>
-                                <input type="text" id="code-adresse" class="form-control form-control-lg" name="user_codeAdress" pattern = "[0-9]{5}" required>
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Veuillez saisir votre code postal</div>
                             </div>
                             <div class="form-group form-inline col-12 col-md-5 m-md-2">
                                 <label for="Ville" class="col-auto col-form-label col-form-label-sm">Ville :</label>
@@ -61,7 +56,7 @@
                                 <div class="valid-feedback">Valide</div>
                                 <div class="invalid-feedback">Veuillez saisir votre email</div>
                             </div>
-                            <button type="submit" id="valide" class="valider btn btn-outline-secondary col-6 mt-3 mb-2">Valider</button>
+                            <button type="button" id="valide" class="valider btn btn-outline-secondary col-6 mt-3 mb-2">Valider</button>
                         </div>
                     </form>
                 </div>

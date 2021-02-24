@@ -94,118 +94,65 @@ if (panierStocke != null) {
 
 //Tableau des id des produits commandés
 
-let commande = [];
+let product_id = [];
 for (let i in panierStocke){
-    commande.push(panierStocke[i].id);
+    product_id.push(panierStocke[i].id);
 }
-console.log(commande);
+console.log(product_id);
 
 //Validation et envoi des id des produits commandés et du formulaire valide
 
 valider = document.getElementById('valide');
 let firstName = document.getElementById('nom');
-let regexFirstName = /([a-zA-Z\-])\s([a-zA-Z])/g;
+let regexFirstName = /[a-zA-Z\-\s]/g;
 let lastName = document.getElementById('prenom');
-let regexLastName = /([a-zA-Z\-])\s([a-zA-Z])/g;
+let regexLastName = /[a-zA-Z\-\s]/g;
 let address = document.getElementById('adresse');
-let regexAdress = /[a-zA-Z0-9\-_\.]\s[a-zA-Z0-9\-_\.]/g;
-let codeAddress = document.getElementById('code-adresse');
-let regexCodeAddress = /[0-9]/g;
+let regexAddress = /[a-zA-Z0-9\-\s\.]/g;
 let city = document.getElementById('ville');
-let regexCity = /([a-zA-Z\-])\s([a-zA-Z])/g;
+let regexCity = /[a-zA-Z\-\s]/g;
 let email = document.getElementById('mail');
-let regexEmail = /[a-zA-Z0-9\-_\.]+@+[a-zA-Z0-9\-_\.]/g;
+let regexEmail = /[a-zA-Z0-9\-\s\.\_\@]/g;
+
+
 
 valider.addEventListener('click', function valideCommande(event){
     if((regexFirstName.test(firstName) === true)
         && (regexLastName.test(lastName) === true)
-        && (regexAdress.test(address) === true)
-        && (regexCodeAdress.test(codeAddress) === true)
+        && (regexAddress.test(address) === true)
         && (regexCity.test(city) === true)
         && (regexEmail.test(email) === true)
     ){
-        let formulaire = {
+        let user = {
             firstName: firstName.value,
             lastName: lastName.value,
-            adress: adress.value,
+            address: address.value,
             city: city.value,
             email: email.value
-        };        
-        let user = [];
-        user.push(formulaire);
-        console.log(user);
+        };
         console.log('Le formulaire est valide !')
+        console.log(user);       
 
         const envoi = {
             method: 'POST',
-            body: JSON.stringify({user, commande}),
+            body: JSON.stringify({user, product_id}),
             headers: {
                 'Content-Type': 'application/json'
             }
         };           
-            fetch("http://localhost:3000/api/teddies/order"+ envoi)
-            .then(response => response.json())
-            .then(user => { 
-                console.log(user);
-            })
-            .catch(error => alert("Erreur : " + error));
+        fetch("http://localhost:3000/api/teddies/order/", envoi)
+        .then(response => response.json())
+        .then(user => { 
+            
+            console.log(user);
+        })
+        .catch(error => alert("Erreur : " + error));
         
     } else{
         alert('Une ou plusieurs données du formulaire sont incorrectes, veuillez les vérifier !')
-        window.location.href = "panier.js";
+        console.log(user);
         console.log("Le formulaire n'est pas valide !")
-        
+        window.location.href = "panier.html";
    }
 });
-
-/*
-
-function sendData(data){
-    let xhr = new XMLHttpRequest();
-    let formData = new FormData();
-
-    for(form in data) {
-        formData.append(name, data[form]);
-    }
-
-    xhr.addEventListener('load', function(event){
-        alert('Vos données ont bien été envoyées');
-    });
-
-    xhr.addEventListener('error', function(event){
-        alert('Une erreur est survenue !');
-    });
-
-    xhr.open('POST', 'http://localhost:3000/order/');
-
-    xhr.send(formData);
-
-    window.location = "confirmation.html";
-}
-
-window.addEventListener('load', function(){
-    function sendData(){
-        let xhr = new XMLHttpRequest();
-        let formData = new FormData(form);
-
-        xhr.addEventListener('load', function(event){
-            alert(event.target.responseTex);
-        });
-
-        xhr.addEventListener('error', function(event){
-            alert('Une erreur est survenue !');
-        });
-
-        xhr.open('POST', 'https://example.com');
-
-        xhr.send(formData);
-    }
-
-    let form = document.getElementById('formulaire');
-
-    form.addEventListener('submit', function(event){
-        event.preventDefault();
-
-        sendData();
-    });
-});*/
+/*window.location.href = "confirmation.html";*/
