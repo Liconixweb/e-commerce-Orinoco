@@ -1,3 +1,11 @@
+//Récupération des données de la commande dans le localStorage
+
+let totalCommande = JSON.parse(localStorage.getItem('totalCommande'));
+let numeroCommande = JSON.parse(localStorage.getItem('numeroCommande'));
+
+console.log(totalCommande);
+console.log(numeroCommande);
+
 //Mise en page de la confirmation de commande
 
 main = document.getElementById('main-confirmation');
@@ -7,7 +15,9 @@ main.append(confirmation);
 
 confirmationTitle = document.createElement('h1');
 confirmationTitle.className = 'oursPanierTitle text-center mt-3 mb-3';
-confirmationTitle.textContent = 'Votre commande a bien été validé ! ';
+confirmationTitle.textContent = 'Votre commande n°' + numeroCommande +
+                                'pour un total de ' + totalCommande + '€' +
+                                'a bien été validé !';
 confirmation.appendChild(confirmationTitle);
 
 confirmationTexte = document.createElement('h2');

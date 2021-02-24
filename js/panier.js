@@ -8,8 +8,13 @@ main.prepend(newPanier);
 //Récupération des données du panier dans le localStorage
 
 let panierStocke = JSON.parse(localStorage.getItem('panier'));
-
 console.log(panierStocke);
+
+//totalCommande contiendra la valeur total de ma commande
+
+let totalCommande = 0;
+
+//Condition présentant un panier vide ou un panier contenant des articles
 
 if (panierStocke != null) {
 
@@ -29,8 +34,6 @@ if (panierStocke != null) {
         newPanier.appendChild(oursCommandeTitle);
 
         //Affichage des articles présents dans le localStorage
-
-        let totalCommande = 0;
 
         for(let i=0; i < panierStocke.length; i++){      
 
@@ -68,15 +71,17 @@ if (panierStocke != null) {
             console.log(panierStocke);          
             
             buttonSupprime.addEventListener('click', function supprimeArticle(event){                  
-                let index = event.target;                
+                let index = event.target;         
+                console.log(index);                       
                 panierStocke.splice(index,1);             
                 localStorage.setItem('panier',JSON.stringify(panierStocke));
                 window.location.href = "panier.html";
                 if (panierStocke.length === 0){
                     localStorage.removeItem('panier');
-                }
+                }                
             });        
             console.log(panierStocke);
+    
         }
         //Calcul du total de la commande
 
@@ -88,7 +93,7 @@ if (panierStocke != null) {
 } else {
     newPanierTitle = document.createElement('h1');
     newPanierTitle.className = 'oursPanierTitle text-center';
-        newPanierTitle.textContent = 'Votre Panier est vide !';
+    newPanierTitle.textContent = 'Votre Panier est vide !';
     newPanier.appendChild(newPanierTitle);
 }
 
@@ -113,10 +118,8 @@ let city = document.getElementById('ville');
 let regexCity = /[a-zA-Z\-\s]/g;
 let email = document.getElementById('mail');
 let regexEmail = /[a-zA-Z0-9\-\s\.\_\@]/g;
-
-
-
 valider.addEventListener('click', function valideCommande(event){
+    event.preventDefault()
     if((regexFirstName.test(firstName) === true)
         && (regexLastName.test(lastName) === true)
         && (regexAddress.test(address) === true)
@@ -124,27 +127,34 @@ valider.addEventListener('click', function valideCommande(event){
         && (regexEmail.test(email) === true)
     ){
         let user = {
-            firstName: firstName.value,
-            lastName: lastName.value,
+            firstName: firstName.value, 
+            lastName: lastName.value, 
             address: address.value,
             city: city.value,
             email: email.value
         };
         console.log('Le formulaire est valide !')
-        console.log(user);       
+        console.log(user);  
+        
+//order_id contiendra le numéro de la commande après validation et envoi du formulaire
+
+        let order_id = [];    
 
         const envoi = {
             method: 'POST',
-            body: JSON.stringify({user, product_id}),
             headers: {
                 'Content-Type': 'application/json'
-            }
-        };           
-        fetch("http://localhost:3000/api/teddies/order/", envoi)
-        .then(response => response.json())
-        .then(user => { 
+            },
+            body: JSON.stringify({user, product_id})
             
-            console.log(user);
+        };     
+        fetch("http://localhost:3000/api/teddies/order", envoi)
+        .then(response => response.json())
+        .then(user => {
+            localStorage.setItem("totalCommande",JSON.stringify(totalCommande));
+            localStorage.setItem("numéroCommande", JSON.stringify(user.order_id));
+            /*window.location.href = "confirmation.html";*/
+            console.log(order_id);
         })
         .catch(error => alert("Erreur : " + error));
         
@@ -155,4 +165,3 @@ valider.addEventListener('click', function valideCommande(event){
         window.location.href = "panier.html";
    }
 });
-/*window.location.href = "confirmation.html";*/
