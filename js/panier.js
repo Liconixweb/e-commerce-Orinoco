@@ -144,8 +144,6 @@ valider.addEventListener('click', function valideCommande(event){
 
 //order_id contiendra le numéro de la commande après validation et envoi du formulaire
 
-        let order_id = []; 
-
         const envoi = {
             method: 'POST',
             headers: {
@@ -160,9 +158,9 @@ valider.addEventListener('click', function valideCommande(event){
         .then(contact => {
             localStorage.setItem("totalCommande",JSON.stringify(totalCommande));
             console.log(contact);
-            /*localStorage.setItem("numéroCommande", JSON.stringify(order_id));*/
-            /*window.location.href = "confirmation.html";*/
-            console.log(order_id);
+            localStorage.setItem("numeroCommande", JSON.stringify(contact.orderId));
+            window.location.href = "confirmation.html";
+            console.log(contact.orderId);
         })
         .catch(error => alert("Erreur : " + error));
         

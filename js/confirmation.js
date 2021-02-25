@@ -15,9 +15,16 @@ main.append(confirmation);
 
 confirmationTitle = document.createElement('h1');
 confirmationTitle.className = 'oursPanierTitle text-center mt-3 mb-3';
-confirmationTitle.textContent = 'Votre commande n°' + numeroCommande +
-                                '\n pour un total de ' + totalCommande + '€' +
-                                '\ a bien été validé !';
+confirmationTitle.innerHTML = `Votre commande 
+                              </br>
+                              </br>n° ${numeroCommande}
+                              </br>
+                              </br>pour un total de ${totalCommande} € 
+                              </br>
+                              </br>a bien été validé !`;
+/*confirmationTitle.innerHTML = "Votre commande n°" + numeroCommande +
+                              "</br>pour un total de" + totalCommande + " €" +
+                              "</br>a bien été validé !";*/
 confirmation.appendChild(confirmationTitle);
 
 confirmationTexte = document.createElement('h2');
