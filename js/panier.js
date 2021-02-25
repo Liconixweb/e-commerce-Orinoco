@@ -35,7 +35,6 @@ if (panierStocke != null) {
 
         //Affichage des articles présents dans le localStorage
 
-        /*for(let i=0; i < panierStocke.length; i++)*/
         panierStocke.forEach((ours,index) =>{      
             console.log(ours);
             console.log(index);
