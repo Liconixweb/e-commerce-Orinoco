@@ -101,11 +101,12 @@ if (panierStocke != null) {
 
 //Tableau des id des produits commandés
 
-let product_id = [];
+let products = [];
 for (let i in panierStocke){
-    product_id.push(panierStocke[i].id);
+    products.push(panierStocke[i].id);
 }
-console.log(product_id);
+console.log(products);
+console.log(typeof products);
 
 //Validation et envoi des id des produits commandés et du formulaire valide
 
@@ -128,33 +129,38 @@ valider.addEventListener('click', function valideCommande(event){
         && (regexCity.test(city) === true)
         && (regexEmail.test(email) === true)
     ){
-        let user = {
+        let contact = {
             firstName: firstName.value, 
             lastName: lastName.value, 
             address: address.value,
             city: city.value,
             email: email.value
         };
-        console.log('Le formulaire est valide !')
-        console.log(user);  
+        /*user.toString();*/
         
+        console.log(contact);          
+        console.log(typeof contact);
+        console.log('Le formulaire est valide !')
+
 //order_id contiendra le numéro de la commande après validation et envoi du formulaire
 
-        let order_id = [];    
+        let order_id = []; 
 
         const envoi = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({user, product_id})
-            
+            body: JSON.stringify({contact, products}),
+            mode: 'cors',
+            cache: 'default'
         };     
         fetch("http://localhost:3000/api/teddies/order", envoi)
         .then(response => response.json())
-        .then(user => {
+        .then(contact => {
             localStorage.setItem("totalCommande",JSON.stringify(totalCommande));
-            localStorage.setItem("numéroCommande", JSON.stringify(user.order_id));
+            console.log(contact);
+            /*localStorage.setItem("numéroCommande", JSON.stringify(order_id));*/
             /*window.location.href = "confirmation.html";*/
             console.log(order_id);
         })
@@ -162,7 +168,6 @@ valider.addEventListener('click', function valideCommande(event){
         
     } else{
         alert('Une ou plusieurs données du formulaire sont incorrectes, veuillez les vérifier !')
-        console.log(user);
         console.log("Le formulaire n'est pas valide !")
         window.location.href = "panier.html";
    }
