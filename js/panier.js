@@ -106,7 +106,6 @@ for (let i in panierStocke){
     products.push(panierStocke[i].id);
 }
 console.log(products);
-console.log(typeof products);
 
 //Validation et envoi des id des produits commandés et du formulaire valide
 
@@ -135,11 +134,8 @@ valider.addEventListener('click', function valideCommande(event){
             address: address.value,
             city: city.value,
             email: email.value
-        };
-        /*user.toString();*/
-        
+        };        
         console.log(contact);          
-        console.log(typeof contact);
         console.log('Le formulaire est valide !')
 
 //order_id contiendra le numéro de la commande après validation et envoi du formulaire

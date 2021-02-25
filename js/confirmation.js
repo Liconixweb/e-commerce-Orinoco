@@ -10,7 +10,7 @@ console.log(numeroCommande);
 
 main = document.getElementById('main-confirmation');
 confirmation = document.createElement('div');
-confirmation.className = 'newPanier row mx-auto mt-2 mb-2 col-md-6';
+confirmation.className = 'newPanier row mx-auto mt-2 mb-2 col';
 main.append(confirmation);
 
 confirmationTitle = document.createElement('h1');
@@ -22,12 +22,10 @@ confirmationTitle.innerHTML = `Votre commande
                               </br>pour un total de ${totalCommande} € 
                               </br>
                               </br>a bien été validé !`;
-/*confirmationTitle.innerHTML = "Votre commande n°" + numeroCommande +
-                              "</br>pour un total de" + totalCommande + " €" +
-                              "</br>a bien été validé !";*/
+
 confirmation.appendChild(confirmationTitle);
 
 confirmationTexte = document.createElement('h2');
 confirmationTexte.className = 'oursPanierTitle text-center mt-3 mb-3';
-confirmationTexte.textContent = 'Merci de votre visite et à bientôt';
+confirmationTexte.textContent = 'Merci pour votre commande et à bientôt';
 confirmation.appendChild(confirmationTexte);

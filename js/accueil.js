@@ -8,7 +8,7 @@ fetch("http://localhost:3000/api/teddies")
 
         main = document.getElementById('main');
         newOurs = document.createElement('div');
-        newOurs.className = 'ours row mx-auto m-2 p-2 col-md-5 rounded bg-white shadow';
+        newOurs.className = 'ours row mx-auto m-1 p-3 col-md-5 rounded bg-white shadow';
         main.append(newOurs);
 
         newOursImage = document.createElement("img");    
@@ -28,7 +28,7 @@ fetch("http://localhost:3000/api/teddies")
         newOurs.append(newOursPrice);
 
         newOursButton = document.createElement("button");
-        newOursButton.className = 'oursButton btn btn-outline-secondary mt-0 mb-2';
+        newOursButton.className = 'oursButton btn btn-outline-secondary mt-0 mb-2 mt-sm-2 mb-sm-4';
         newOursButton.textContent = "Plus de coloris";
         newOurs.append(newOursButton);
         
