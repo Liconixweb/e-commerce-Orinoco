@@ -21,7 +21,7 @@ confirmationTitle.innerHTML = `Votre commande
                               </br>
                               </br>pour un total de ${totalCommande} € 
                               </br>
-                              </br>a bien été validé !`;
+                              </br>a bien été validée !`;
 
 confirmation.appendChild(confirmationTitle);
 

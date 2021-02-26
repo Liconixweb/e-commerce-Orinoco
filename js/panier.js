@@ -28,7 +28,7 @@ if (panierStocke != null) {
         newPanierTitle.textContent = 'Votre Panier :';
         newPanier.appendChild(newPanierTitle);
 
-        oursCommandeTitle = document.createElement('p');
+        oursCommandeTitle = document.createElement('h2');
         oursCommandeTitle.className = 'oursCommandeTitle row mt-2 mb-2';
         oursCommandeTitle.textContent = 'Les ours commandés : ';
         newPanier.appendChild(oursCommandeTitle);
@@ -49,14 +49,14 @@ if (panierStocke != null) {
             oursPanierImage.textContent = ours.imageUrl;
             oursPanier.appendChild(oursPanierImage);
 
-            oursPanierTitle = document.createElement('p');
+            oursPanierTitle = document.createElement('h3');
             oursPanierTitle.className = 'oursPanierTitle col m-0 align-self-center justify-content-center text-center';
             oursPanierTitle.textContent = ours.name;
             oursPanier.appendChild(oursPanierTitle);
 
         // Gestion du prix des articles commandés
 
-            oursPanierPrice = document.createElement('p');
+            oursPanierPrice = document.createElement('h3');
             oursPanierPrice.className = 'oursPanierPrice col m-0 flex-nowrap align-self-center justify-content-center text-center';
             oursPanierPrice.setAttribute('id', 'prixArticle');
             oursPanierPrice.textContent = 'Prix total : ' + ours.price + "€";
@@ -87,7 +87,7 @@ if (panierStocke != null) {
         })
         //Calcul du total de la commande
 
-    oursCommandeTotal = document.createElement('p');
+    oursCommandeTotal = document.createElement('h2');
     oursCommandeTotal.className = 'oursCommandeTotal row mx-auto mt-2 mb-3';    
     oursCommandeTotal.textContent = 'Total de la commande : ' + totalCommande + '€';
     newPanier.appendChild(oursCommandeTotal);
@@ -127,6 +127,7 @@ valider.addEventListener('click', function valideCommande(event){
         && (regexAddress.test(address) === true)
         && (regexCity.test(city) === true)
         && (regexEmail.test(email) === true)
+        && (products != 0)
     ){
         let contact = {
             firstName: firstName.value, 
@@ -161,8 +162,8 @@ valider.addEventListener('click', function valideCommande(event){
         .catch(error => alert("Erreur : " + error));
         
     } else{
-        alert('Une ou plusieurs données du formulaire sont incorrectes, veuillez les vérifier !')
-        console.log("Le formulaire n'est pas valide !")
+        alert('Le panier est vide le formulaire de contact contient des informations incorrectes, veuillez vérifier !')
+        console.log("Le panier est vide ou le formulaire n'est pas valide !")
         window.location.href = "panier.html";
    }
 });

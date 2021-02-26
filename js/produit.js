@@ -27,7 +27,7 @@ fetch("http://localhost:3000/api/teddies/"+id)
 
         newOursPrice = document.createElement("h2");
         newOursPrice.className = 'oursPrice col mt-3 mb-3 text-center';
-        newOursPrice.textContent = ours.price + " € à l'unité";
+        newOursPrice.textContent = ours.price + " €";
         newOursProduit.appendChild(newOursPrice); 
 
         newOursDescription = document.createElement("p");

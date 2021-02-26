@@ -17,14 +17,14 @@ fetch("http://localhost:3000/api/teddies")
         newOursImage.textContent = ours[i].imageUrl;
         newOurs.append(newOursImage);
 
-        newOursName = document.createElement("h2");        
+        newOursName = document.createElement("p");        
         newOursName.className = 'oursName col-9 mb-0';
         newOursName.textContent = ours[i].name;
         newOurs.append(newOursName);
 
-        newOursPrice = document.createElement("h2");
+        newOursPrice = document.createElement("p");
         newOursPrice.className = 'oursPrice col-3 mb-0';
-        newOursPrice.textContent = ours[i].price;
+        newOursPrice.textContent = ours[i].price + "€";
         newOurs.append(newOursPrice);
 
         newOursButton = document.createElement("button");
