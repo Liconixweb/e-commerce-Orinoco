@@ -2,7 +2,6 @@
 
 let params = (new URL(document.location)).searchParams;
 let id = params.get('id');
-console.log(id);
 
 //Récupération des informations de l'API et création de la fiche produit
 
@@ -45,7 +44,6 @@ fetch("http://localhost:3000/api/teddies/"+id)
                 newOursProduitColor.textContent = ours.colors[i];
                 newOursProduitButton.appendChild(newOursProduitColor);         
         };
-        console.log(ours);
 
         newOursPanier = document.createElement("button");
         newOursPanier.className = 'oursPanier col-7 btn btn-outline-secondary mt-3 mb-2';
@@ -71,13 +69,11 @@ fetch("http://localhost:3000/api/teddies/"+id)
                         let panierStocke = JSON.parse(localStorage.getItem('panier'));                        
                         panierStocke.push(myPanier);
                         localStorage.setItem('panier',JSON.stringify(panierStocke));
-                        console.log('dans if' + panierStocke);
                                          
                 } else {
                         let panierStocke = [];       
                         panierStocke.push(myPanier);
                         localStorage.setItem('panier',JSON.stringify(panierStocke));
-                        console.log('dans else' + panierStocke);
                 }
 
         //Ajout d'un popup suite à l'ajout au panier
@@ -93,7 +89,5 @@ fetch("http://localhost:3000/api/teddies/"+id)
                 }
                 popupConfirmation();
         });
-        
-        console.log(localStorage.getItem ('panier'));
 })
 .catch(error => alert("Erreur : " + error));

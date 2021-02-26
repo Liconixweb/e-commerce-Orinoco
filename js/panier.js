@@ -8,19 +8,17 @@ main.prepend(newPanier);
 //Récupération des données du panier dans le localStorage
 
 let panierStocke = JSON.parse(localStorage.getItem('panier'));
-console.log(panierStocke);
 
-//totalCommande contiendra la valeur total de ma commande
+//totalCommande contiendra la valeur total de la commande
 
 let totalCommande = 0;
 
-//Condition présentant un panier vide ou un panier contenant des articles
+//Condition présentant un panier vide ou un panier contenant des articles stockés
 
 if (panierStocke != null) {
 
     if(panierStocke.length == 0){
-        console.log('Panier vide');
-
+       
     } else {
 
         newPanierTitle = document.createElement('h1');
@@ -36,8 +34,6 @@ if (panierStocke != null) {
         //Affichage des articles présents dans le localStorage
 
         panierStocke.forEach((ours,index) =>{      
-            console.log(ours);
-            console.log(index);
 
             oursPanier = document.createElement('div');
             oursPanier.className = 'oursPanier row d-flex align-items-center mt-2 mb-3 m-md-1 h-md-15 rounded bg-white shadow';
@@ -69,9 +65,7 @@ if (panierStocke != null) {
             buttonSupprime = document.createElement('button');
             buttonSupprime.className = 'buttonSupprime fas fa-trash-alt col-md btn btn-outline-secondary text-center m-md-2';
             buttonSupprime.setAttribute("data-index", index);
-            oursPanier.appendChild(buttonSupprime);
-            
-            console.log(panierStocke);          
+            oursPanier.appendChild(buttonSupprime);                     
             
             buttonSupprime.addEventListener('click', function supprimeArticle(event){                  
                                  
@@ -81,16 +75,14 @@ if (panierStocke != null) {
                 if (panierStocke.length === 0){
                     localStorage.removeItem('panier');
                 }                
-            });        
-            console.log(panierStocke);
-    
+            });            
         })
         //Calcul du total de la commande
 
-    oursCommandeTotal = document.createElement('h2');
-    oursCommandeTotal.className = 'oursCommandeTotal row mx-auto mt-2 mb-3';    
-    oursCommandeTotal.textContent = 'Total de la commande : ' + totalCommande + '€';
-    newPanier.appendChild(oursCommandeTotal);
+        oursCommandeTotal = document.createElement('h2');
+        oursCommandeTotal.className = 'oursCommandeTotal row mx-auto mt-2 mb-3';    
+        oursCommandeTotal.textContent = 'Total de la commande : ' + totalCommande + '€';
+        newPanier.appendChild(oursCommandeTotal);
     }
 } else {
     newPanierTitle = document.createElement('h1');
@@ -105,9 +97,8 @@ let products = [];
 for (let i in panierStocke){
     products.push(panierStocke[i].id);
 }
-console.log(products);
 
-//Validation et envoi des id des produits commandés et du formulaire valide
+//Validation des id des produits commandés et du formulaire valide
 
 valider = document.getElementById('valide');
 let firstName = document.getElementById('nom');
@@ -136,10 +127,8 @@ valider.addEventListener('click', function valideCommande(event){
             city: city.value,
             email: email.value
         };        
-        console.log(contact);          
-        console.log('Le formulaire est valide !')
 
-//order_id contiendra le numéro de la commande après validation et envoi du formulaire
+//Envoi de la commande et du formulaire de contact
 
         const envoi = {
             method: 'POST',
@@ -153,17 +142,16 @@ valider.addEventListener('click', function valideCommande(event){
         fetch("http://localhost:3000/api/teddies/order", envoi)
         .then(response => response.json())
         .then(contact => {
+            localStorage.clear();
             localStorage.setItem("totalCommande",JSON.stringify(totalCommande));
             console.log(contact);
             localStorage.setItem("numeroCommande", JSON.stringify(contact.orderId));
             window.location.href = "confirmation.html";
-            console.log(contact.orderId);
         })
         .catch(error => alert("Erreur : " + error));
         
     } else{
-        alert('Le panier est vide le formulaire de contact contient des informations incorrectes, veuillez vérifier !')
-        console.log("Le panier est vide ou le formulaire n'est pas valide !")
+        alert('Le panier est vide ou le formulaire de contact contient des informations incorrectes, veuillez vérifier !')
         window.location.href = "panier.html";
    }
 });

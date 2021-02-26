@@ -3,10 +3,7 @@
 let totalCommande = JSON.parse(localStorage.getItem('totalCommande'));
 let numeroCommande = JSON.parse(localStorage.getItem('numeroCommande'));
 
-console.log(totalCommande);
-console.log(numeroCommande);
-
-//Mise en page de la confirmation de commande
+//Mise en page de la confirmation de la commande
 
 main = document.getElementById('main-confirmation');
 confirmation = document.createElement('div');
@@ -29,3 +26,5 @@ confirmationTexte = document.createElement('h2');
 confirmationTexte.className = 'oursPanierTitle text-center mt-3 mb-3';
 confirmationTexte.textContent = 'Merci pour votre commande et à bientôt';
 confirmation.appendChild(confirmationTexte);
+
+localStorage.clear();
