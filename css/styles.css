@@ -23,40 +23,6 @@ p {
   font-weight: 200;
 }
 
-h1 {
-  font-family: "Lobster", cursive;
-}
-
-h2 {
-  font-family: "Lobster", cursive;
-}
-
-h3 {
-  font-family: "Lobster", cursive;
-}
-
-h4 {
-  font-family: "Lobster", cursive;
-}
-
-p {
-  font-family: "Lobster", cursive;
-}
-
-/*input:invalided{
-    border: 2 px dashed red;
-}
-input:invalided{
-    border: 1 px dashed green;
-}*/
-ul {
-  font-family: "Lobster", cursive;
-}
-
-footer a {
-  color: black;
-}
-
 .icon-panier i {
   margin-top: 40px;
   font-size: 50px;
@@ -80,6 +46,14 @@ footer a {
 .retour {
   font-family: 'Lobster', cursive;
   font-weight: bold;
+}
+
+ul {
+  font-family: 'Lobster', cursive;
+}
+
+footer a {
+  color: black;
 }
 
 .oursButton {
