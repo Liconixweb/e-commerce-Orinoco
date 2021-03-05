@@ -101,18 +101,20 @@ for (let i in panierStocke){
 //Validation des id des produits commandés et du formulaire valide
 
 valider = document.getElementById('valide');
-let firstName = document.getElementById('nom');
-let regexFirstName = /[a-zA-Z\-éöàäèüáúóêûîôâ'\s]/g;
-let lastName = document.getElementById('prenom');
-let regexLastName = /[a-zA-Z\-éöàäèüáúóêûîôâ'\s]/g;
-let address = document.getElementById('adresse');
-let regexAddress = /[a-zA-Z0-9\-\s\.]/g;
-let city = document.getElementById('ville');
-let regexCity = /[a-zA-Z\-\s]/g;
-let email = document.getElementById('mail');
-let regexEmail = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/g;
-valider.addEventListener('click', function valideCommande(event){
-    event.preventDefault()
+
+
+valider.addEventListener('click', function valideCommande(event){   
+    
+    let firstName = document.getElementById('nom').value;
+    let regexFirstName = /[a-zA-Z\-éöàäèüáúóêûîôâ'\s]{2,10}/g;
+    let lastName = document.getElementById('prenom').value;
+    let regexLastName = /[a-zA-Z\-éöàäèüáúóêûîôâ'\s]{2,10}/g;
+    let address = document.getElementById('adresse').value;
+    let regexAddress = /[a-zA-Z0-9\-éöàäèüáúóêûîôâ'\s\.]/g;
+    let city = document.getElementById('ville').value;
+    let regexCity = /[A-Za-z\s\-éöàäèüáúóêûîôâ']{2,20}/g;
+    let email = document.getElementById('mail').value;
+    let regexEmail = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/g;
     if((regexFirstName.test(firstName) === true)
         && (regexLastName.test(lastName) === true)
         && (regexAddress.test(address) === true)
@@ -121,11 +123,11 @@ valider.addEventListener('click', function valideCommande(event){
         && (products != 0)
     ){
         let contact = {
-            firstName: firstName.value, 
-            lastName: lastName.value, 
-            address: address.value,
-            city: city.value,
-            email: email.value
+            firstName: firstName, 
+            lastName: lastName, 
+            address: address,
+            city: city,
+            email: email
         };        
 
 //Envoi de la commande et du formulaire de contact
@@ -154,4 +156,5 @@ valider.addEventListener('click', function valideCommande(event){
         alert('Le panier est vide ou le formulaire de contact contient des informations incorrectes, veuillez vérifier !')
         window.location.href = "panier.html";
    }
+   event.preventDefault()
 });

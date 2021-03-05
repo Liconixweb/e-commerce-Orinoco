@@ -46,7 +46,7 @@
                         </div>
                         <div class="form-group form-inline col-12 col-md-5 m-md-2">
                             <label for="ville" class="col-auto col-form-label col-form-label-sm">Ville :</label>
-                            <input type="text" id="ville" class="form-control form-control-lg" name="user_city" required>
+                            <input type="text" id="ville" class="form-control form-control-lg" name="user_city" pattern="[A-Za-z\s\-éöàäèüáúóêûîôâ']{2,20}" required>
                             <div class="valid-feedback">Valide</div>
                             <div class="invalid-feedback">Veuillez saisir votre ville</div>
                         </div>
