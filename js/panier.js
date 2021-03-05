@@ -102,15 +102,15 @@ for (let i in panierStocke){
 
 valider = document.getElementById('valide');
 let firstName = document.getElementById('nom');
-let regexFirstName = /[a-zA-Z\-\s]/g;
+let regexFirstName = /[a-zA-Z\-éöàäèüáúóêûîôâ'\s]/g;
 let lastName = document.getElementById('prenom');
-let regexLastName = /[a-zA-Z\-\s]/g;
+let regexLastName = /[a-zA-Z\-éöàäèüáúóêûîôâ'\s]/g;
 let address = document.getElementById('adresse');
 let regexAddress = /[a-zA-Z0-9\-\s\.]/g;
 let city = document.getElementById('ville');
 let regexCity = /[a-zA-Z\-\s]/g;
 let email = document.getElementById('mail');
-let regexEmail = /[a-zA-Z0-9\-\s\.\_\@]/g;
+let regexEmail = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/g;
 valider.addEventListener('click', function valideCommande(event){
     event.preventDefault()
     if((regexFirstName.test(firstName) === true)

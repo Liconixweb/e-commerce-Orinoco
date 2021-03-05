@@ -28,13 +28,13 @@
                     <div class="form-row d-flex flex-column flex-md-row flex-md-wrap m-md-2 justify-content-center align-items-center">
                         <div class="form-group form-inline col-12 col-md-5 m-md-2">
                             <label for="nom" class="col-auto col-form-label col-form-label-sm">Nom de famille :</label>
-                            <input type="text" id="nom" class="form-control form-control-lg" name="user_firstName" minlength="2" required>
+                            <input type="text" id="nom" class="form-control form-control-lg" name="user_firstName" pattern="[A-Za-z\s\-éöàäèüáúóêûîôâ']{2,10}" required>
                             <div class="valid-feedback">Valide</div>
                             <div class="invalid-feedback">Veuillez saisir votre nom</div>
                         </div>
                         <div class="form-group form-inline col-12 col-md-5 m-md-2">
                             <label for="prenom" class="col-auto col-form-label col-form-label-sm">Prénom :</label>
-                            <input type="text" id="prenom" class="form-control form-control-lg" name="user_lastName" minlength="2" required>
+                            <input type="text" id="prenom" class="form-control form-control-lg" name="user_lastName" pattern="[A-Za-z\s\-éöàäèüáúóêûîôâ']{2,10}" required>
                             <div class="valid-feedback">Valide</div>
                             <div class="invalid-feedback">Veuillez saisir votre prénom</div>
                         </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group form-inline col-12 col-md-5 m-md-2">
                             <label for="mail" class="col-auto col-form-label col-form-label-sm">Email :</label>
-                            <input type="email" id="mail" class="form-control form-control-lg" name="user_email" required>
+                            <input type="email" id="mail" class="form-control form-control-lg" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                             <div class="valid-feedback">Valide</div>
                             <div class="invalid-feedback">Veuillez saisir votre email</div>
                         </div>
